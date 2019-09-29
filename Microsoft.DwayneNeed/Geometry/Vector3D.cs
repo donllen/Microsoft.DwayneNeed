@@ -1,0 +1,30 @@
+﻿namespace Microsoft.DwayneNeed.Geometry
+{
+    /// <summary>
+    ///     A generic interface for a 3-dimensional vector.
+    /// </summary>
+    public interface IVector3D<T>
+    {
+        T DeltaX { get; }
+        T DeltaY { get; }
+        T DeltaZ { get; }
+    }
+
+    /// <summary>
+    ///     A simple implementation of a 3-dimensional vector.
+    /// </summary>
+    public struct Vector3D<T> : IVector3D<T>
+    {
+        public Vector3D(T deltaX, T deltaY, T deltaZ)
+            : this()
+        {
+            DeltaX = deltaX;
+            DeltaY = deltaY;
+            DeltaZ = deltaZ;
+        }
+
+        public T DeltaX { get; }
+        public T DeltaY { get; }
+        public T DeltaZ { get; }
+    }
+}

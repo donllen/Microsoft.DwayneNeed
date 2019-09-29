@@ -1,0 +1,69 @@
+﻿using System;
+using System.Windows;
+using System.Windows.Media.Media3D;
+using Microsoft.DwayneNeed.Shapes;
+
+namespace Microsoft.DwayneNeed.Media
+{
+    /// <summary>
+    ///     Shape3DMaterial describes the material to use to display on the
+    ///     surface of a shape.
+    /// </summary>
+    /// <remarks>
+    ///     This can be either:
+    ///     1) A non-interactive Material, possibly deferred
+    ///     2) A an interactive UIElement, possibly deferred
+    /// </remarks>
+    public class Shape3DMaterial
+    {
+        private readonly Func<Shape3D, UIElement> _getElement;
+
+        private readonly Func<Shape3D, Material> _getMaterial;
+
+        public Shape3DMaterial(Material material)
+        {
+            _getMaterial = shape => material;
+        }
+
+        public Shape3DMaterial(Func<Shape3D, Material> getMaterial)
+        {
+            _getMaterial = getMaterial;
+        }
+
+        public Shape3DMaterial(UIElement element)
+        {
+            _getElement = shape => element;
+        }
+
+        public Shape3DMaterial(Func<Shape3D, UIElement> getElement)
+        {
+            _getElement = getElement;
+        }
+
+        public bool HasMaterial => _getMaterial != null;
+
+        public bool HasElement => _getElement != null;
+
+        public static implicit operator Shape3DMaterial(Material material)
+        {
+            return new Shape3DMaterial(material);
+        }
+
+        public static implicit operator Shape3DMaterial(UIElement element)
+        {
+            return new Shape3DMaterial(element);
+        }
+
+        public Material GetMaterial(Shape3D shape)
+        {
+            if (_getMaterial != null) return _getMaterial(shape);
+            return null;
+        }
+
+        public UIElement GetElement(Shape3D shape)
+        {
+            if (_getElement != null) return _getElement(shape);
+            return null;
+        }
+    }
+}
