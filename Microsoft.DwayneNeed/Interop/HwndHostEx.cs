@@ -91,7 +91,7 @@ namespace Microsoft.DwayneNeed.Interop
             set => SetValue(AsyncUpdateWindowPosProperty, value);
         }
 
-        protected sealed override HandleRef BuildWindowCore(HandleRef hwndParent)
+        protected override HandleRef BuildWindowCore(HandleRef hwndParent)
         {
             HWND hwndParent2 = new HWND(hwndParent.Handle);
             _hwndChild = BuildWindowOverride(hwndParent2);

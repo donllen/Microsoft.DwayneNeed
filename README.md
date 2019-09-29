@@ -6,4 +6,4 @@ In order to compile, you need to install **Visual Studio 2015 or newer** with th
 
 - [x] Visual C++ Toolset Component（Used by D2DSamples）
 - [x] Windows 8.1 SDK Component（Used by D2DSamples）
-- [x] .Net FrameWork 4.5
+- [x] .Net FrameWork 4.5 & .Net FrameWork 4.7
